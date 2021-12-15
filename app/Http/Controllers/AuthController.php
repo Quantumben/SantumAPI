@@ -57,14 +57,10 @@ class AuthController extends Controller
         if(!$user || !Hash::check($fields['password'], $user->password))
         {
             return response([
-                'message' => 'Bad Details'
+                'message' => 'Incorrect Login/Password'
             ], 401);
         }
-        $user = User::create([
-            // 'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password'])
-        ]);
+
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
